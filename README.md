@@ -22,6 +22,10 @@ echo $db->get(1);
 $db->update(1, 'new string');
 echo $db->get(1);
 // 'new string'
+
+$db->delete(1);
+var_dump($db->get(1));
+// null
 ```
 
 ## Tests
