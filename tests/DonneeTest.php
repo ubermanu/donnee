@@ -48,6 +48,26 @@ final class DonneeTest extends TestCase
      * @covers
      * @throws \Ubermanu\Donnee\Exception
      */
+    public function testCanInsertComplexData(): void
+    {
+        $obj = new stdClass();
+        $obj->prop = 'value';
+
+        $arr = [];
+        $arr['prop'] = 'value';
+
+        $this->db->insert($obj);
+        $this->db->insert($arr);
+
+        $this->assertEquals($this->db->count(), 2);
+        $this->assertEquals($this->db->get(1), $obj);
+        $this->assertEquals($this->db->get(2), $arr);
+    }
+
+    /**
+     * @covers
+     * @throws \Ubermanu\Donnee\Exception
+     */
     public function testCanGet(): void
     {
         $this->db->insert(110);
@@ -71,5 +91,35 @@ final class DonneeTest extends TestCase
 
         $this->assertEquals($this->db->count(), 1);
         $this->assertEquals($this->db->get(1), 654);
+    }
+
+    /**
+     * @covers
+     * @throws \Ubermanu\Donnee\Exception
+     */
+    public function testUnknownLineReturnsNull(): void
+    {
+        $this->db->insert('test');
+        $this->assertEquals($this->db->get(999999999999999), null);
+    }
+
+    /**
+     * @covers
+     * @throws \Ubermanu\Donnee\Exception
+     */
+    public function testCanDelete(): void
+    {
+        $this->db->insert('1');
+        $this->db->insert('2');
+        $this->db->insert('3');
+
+        $this->assertEquals($this->db->count(), 3);
+
+        $this->db->delete(1);
+
+        $this->assertEquals($this->db->count(), 3);
+        $this->assertEquals($this->db->get(1), null);
+        $this->assertEquals($this->db->get(2), '2');
+        $this->assertEquals($this->db->get(3), '3');
     }
 }

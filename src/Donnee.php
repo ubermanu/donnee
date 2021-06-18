@@ -80,6 +80,23 @@ class Donnee implements DonneeInterface
      * @inheritDoc
      * @throws Exception
      */
+    public function delete(int $id): bool
+    {
+        $cmd = sprintf("sed -i '%ds/.*//' %s", $id, $this->db);
+
+        try {
+            exec($cmd);
+        } catch (\Exception $e) {
+            throw new Exception(sprintf("Can't delete the line: %d", $id), 1624042470, $e);
+        }
+
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws Exception
+     */
     public function count(): int
     {
         $cmd = sprintf("sed -n '$=' %s || echo 0", $this->db);

@@ -35,6 +35,14 @@ interface DonneeInterface
     public function update(int $id, mixed $data): bool;
 
     /**
+     * Empty a line content.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): bool;
+
+    /**
      * Returns the number of lines in the db.
      *
      * @return int
