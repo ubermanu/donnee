@@ -64,6 +64,27 @@ class Donnee implements DonneeInterface
     }
 
     /**
+     * @param array $rows
+     * @throws Exception
+     */
+    public function insertMany(array $rows): void
+    {
+        $echo = '';
+
+        foreach ($rows as $row) {
+            $echo .= sprintf("echo %s ; ", escapeshellarg($this->encode($row)));
+        }
+
+        $cmd = sprintf("(%s) >> %s", rtrim($echo, '; '), $this->db);
+
+        try {
+            exec($cmd);
+        } catch (\Exception $e) {
+            throw new Exception("Can't insert data into the db", 1624042500, $e);
+        }
+    }
+
+    /**
      * @inheritDoc
      * @throws Exception
      */
