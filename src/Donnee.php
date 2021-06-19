@@ -28,6 +28,10 @@ class Donnee implements DonneeInterface
      */
     public function get(int $id): mixed
     {
+        if ($id <= 0) {
+            return null;
+        }
+
         $cmd = sprintf("sed '%dq;d' %s", $id, $this->db);
 
         try {
