@@ -7,14 +7,14 @@ class Donnee
     /**
      * @var string
      */
-    protected string $db;
+    protected string $src;
 
     /**
-     * @param string $db
+     * @param string $filename
      */
-    public function __construct(string $db)
+    public function __construct(string $filename)
     {
-        $this->db = $db;
+        $this->src = $filename;
     }
 
     /**
@@ -30,7 +30,7 @@ class Donnee
             return null;
         }
 
-        $cmd = sprintf("sed '%dq;d' %s", $id, $this->db);
+        $cmd = sprintf("sed '%dq;d' %s", $id, $this->src);
 
         try {
             $res = exec($cmd);
@@ -54,7 +54,7 @@ class Donnee
      */
     public function insert(mixed $data): int
     {
-        $cmd = sprintf("echo %s >> %s", escapeshellarg($this->encode($data)), $this->db);
+        $cmd = sprintf("echo %s >> %s", escapeshellarg($this->encode($data)), $this->src);
 
         try {
             exec($cmd);
@@ -79,7 +79,7 @@ class Donnee
             $echo .= sprintf("echo %s ; ", escapeshellarg($this->encode($row)));
         }
 
-        $cmd = sprintf("(%s) >> %s", rtrim($echo, '; '), $this->db);
+        $cmd = sprintf("(%s) >> %s", rtrim($echo, '; '), $this->src);
 
         try {
             exec($cmd);
@@ -98,7 +98,7 @@ class Donnee
      */
     public function update(int $id, mixed $data): bool
     {
-        $cmd = sprintf("sed -i '%ds/.*/%s/' %s", $id, addcslashes($this->encode($data), '\\/'), $this->db);
+        $cmd = sprintf("sed -i '%ds/.*/%s/' %s", $id, addcslashes($this->encode($data), '\\/'), $this->src);
 
         try {
             exec($cmd);
@@ -118,7 +118,7 @@ class Donnee
      */
     public function delete(int $id): bool
     {
-        $cmd = sprintf("sed -i '%ds/.*//' %s", $id, $this->db);
+        $cmd = sprintf("sed -i '%ds/.*//' %s", $id, $this->src);
 
         try {
             exec($cmd);
@@ -137,7 +137,7 @@ class Donnee
      */
     public function count(): int
     {
-        $cmd = sprintf("sed -n '$=' %s || echo 0", $this->db);
+        $cmd = sprintf("sed -n '$=' %s || echo 0", $this->src);
 
         try {
             $res = exec($cmd);
