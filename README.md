@@ -1,4 +1,4 @@
-# DONNEE
+# Donnée
 
 Tiny database abstraction based on sed
 
