@@ -2,7 +2,7 @@
 
 namespace Donnee;
 
-class Donnee implements DonneeInterface
+class Donnee
 {
     /**
      * @var string
@@ -18,7 +18,10 @@ class Donnee implements DonneeInterface
     }
 
     /**
-     * @inheritDoc
+     * Get the content of a stored line.
+     *
+     * @param int $id
+     * @return mixed
      * @throws Exception
      */
     public function get(int $id): mixed
@@ -42,7 +45,11 @@ class Donnee implements DonneeInterface
     }
 
     /**
-     * @inheritDoc
+     * Insert data at the end of the file.
+     * Returns the latest inserted line number.
+     *
+     * @param mixed $data
+     * @return int
      * @throws Exception
      */
     public function insert(mixed $data): int
@@ -59,6 +66,8 @@ class Donnee implements DonneeInterface
     }
 
     /**
+     * Insert multiple rows at the end of the file.
+     *
      * @param array $rows
      * @throws Exception
      */
@@ -80,7 +89,11 @@ class Donnee implements DonneeInterface
     }
 
     /**
-     * @inheritDoc
+     * Update the data at a specific line.
+     *
+     * @param int $id
+     * @param mixed $data
+     * @return bool
      * @throws Exception
      */
     public function update(int $id, mixed $data): bool
@@ -97,7 +110,10 @@ class Donnee implements DonneeInterface
     }
 
     /**
-     * @inheritDoc
+     * Remove a line from the file.
+     *
+     * @param int $id
+     * @return bool
      * @throws Exception
      */
     public function delete(int $id): bool
@@ -114,7 +130,9 @@ class Donnee implements DonneeInterface
     }
 
     /**
-     * @inheritDoc
+     * Returns the number of lines in the db.
+     *
+     * @return int
      * @throws Exception
      */
     public function count(): int
