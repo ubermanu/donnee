@@ -13,7 +13,9 @@
             "Donnee\\": "src/"
         }
     },
-    "require": {},
+    "require": {
+        "php": "~8"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     }
