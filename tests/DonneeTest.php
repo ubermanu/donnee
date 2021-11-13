@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use Donnee\Donnee;
+use PHPUnit\Framework\TestCase;
 
 final class DonneeTest extends TestCase
 {
