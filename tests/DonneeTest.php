@@ -119,4 +119,15 @@ final class DonneeTest extends TestCase
         $this->assertEquals('2', $this->db->get(2));
         $this->assertEquals('3', $this->db->get(3));
     }
+
+    /**
+     * @covers
+     * @throws \Donnee\Exception
+     */
+    public function testInsertSpecialCharacters(): void
+    {
+        $special = 'éà@/\\%~-=<>>';
+        $this->db->insert($special);
+        $this->assertEquals($special, $this->db->get(1));
+    }
 }

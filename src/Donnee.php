@@ -15,6 +15,10 @@ class Donnee
     public function __construct(string $filename)
     {
         $this->src = $filename;
+
+        // Keep special characters when escaping shell commands
+        // https://www.php.net/manual/en/function.escapeshellarg.php#99213
+        setlocale(LC_CTYPE, 'en_US.UTF-8');
     }
 
     /**
