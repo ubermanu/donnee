@@ -130,4 +130,22 @@ final class DonneeTest extends TestCase
         $this->db->insert($special);
         $this->assertEquals($special, $this->db->get(1));
     }
+
+    /**
+     * @covers
+     * @throws \Donnee\Exception
+     */
+    public function testInsertManyReturnIds(): void
+    {
+        $this->db->insert('1');
+        $this->db->insert('2');
+        $this->db->insert('3');
+
+        $this->assertEquals(3, $this->db->count());
+
+        $ids = $this->db->insertMany(['A', 'B', 'C']);
+
+        $this->assertEquals(6, $this->db->count());
+        $this->assertEquals([3, 4, 5], $ids);
+    }
 }

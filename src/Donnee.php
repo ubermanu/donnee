@@ -73,11 +73,17 @@ class Donnee
      * Insert multiple rows at the end of the file.
      *
      * @param array $rows
+     * @return array
      * @throws Exception
      */
-    public function insertMany(array $rows): void
+    public function insertMany(array $rows): array
     {
+        if (empty($rows)) {
+            return [];
+        }
+
         $echo = '';
+        $count = $this->count();
 
         foreach ($rows as $row) {
             $echo .= sprintf("echo %s ; ", escapeshellarg($this->encode($row)));
@@ -90,6 +96,8 @@ class Donnee
         } catch (\Exception $e) {
             throw new Exception("Can't insert data into the db", 1624042500, $e);
         }
+
+        return range($count, $count + count($rows) - 1);
     }
 
     /**
