@@ -1,11 +1,7 @@
 <?php
 
-namespace Ubermanu\Donnee;
+namespace Donnee;
 
-/**
- * Interface DonneeInterface
- * @package Ubermanu\Donnee
- */
 interface DonneeInterface
 {
     /**

@@ -1,11 +1,7 @@
 <?php
 
-namespace Ubermanu\Donnee;
+namespace Donnee;
 
-/**
- * Class Exception
- * @package Ubermanu\Donnee
- */
 class Exception extends \Exception
 {
 }

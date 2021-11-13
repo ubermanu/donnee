@@ -1,11 +1,7 @@
 <?php
 
-namespace Ubermanu\Donnee;
+namespace Donnee;
 
-/**
- * Class Donnee
- * @package Ubermanu\Donnee
- */
 class Donnee implements DonneeInterface
 {
     /**
@@ -14,7 +10,6 @@ class Donnee implements DonneeInterface
     protected string $db;
 
     /**
-     * Donnee constructor.
      * @param string $db
      */
     public function __construct(string $db)

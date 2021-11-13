@@ -11,7 +11,7 @@ composer require ubermanu/donnee
 ## Usage
 
 ```php
-$db = new \Ubermanu\Donnee\Donnee('file.txt');
+$db = new \Donnee\Donnee('file.txt');
 
 $insertedId = $db->insert('some string');
 // 1

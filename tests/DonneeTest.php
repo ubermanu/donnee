@@ -1,11 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Ubermanu\Donnee\Donnee;
+use Donnee\Donnee;
 
-/**
- * Class DonneeTest
- */
 final class DonneeTest extends TestCase
 {
     /**
