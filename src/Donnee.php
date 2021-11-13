@@ -137,7 +137,7 @@ class Donnee
      */
     public function count(): int
     {
-        $cmd = sprintf("sed -n '$=' %s || echo 0", $this->src);
+        $cmd = sprintf("cat %s | sed '/^\s*$/d' | wc -l", $this->src);
 
         try {
             $res = exec($cmd);

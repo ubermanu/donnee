@@ -114,7 +114,7 @@ final class DonneeTest extends TestCase
 
         $this->db->delete(1);
 
-        $this->assertEquals(3, $this->db->count());
+        $this->assertEquals(2, $this->db->count());
         $this->assertEquals(null, $this->db->get(1));
         $this->assertEquals('2', $this->db->get(2));
         $this->assertEquals('3', $this->db->get(3));
